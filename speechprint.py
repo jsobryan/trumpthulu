@@ -40,7 +40,7 @@ def speechsent():
 
 def speech(x):
     for i in range(x):
-      print('speechsent()')
+      print(speechsent())
 
 speechsent(20)
   
