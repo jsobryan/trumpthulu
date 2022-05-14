@@ -3,6 +3,7 @@
 import markovify
 import re
 import random
+from os import system, name
 
 #utility function for text cleaning
 def text_cleaner(text):
@@ -18,7 +19,7 @@ with open('poemspeech.txt','r') as f:
 
 data = text_cleaner(content)
 
-generator = markovify.Text(data,state_size=2)
+generator = markovify.Text(data,state_size=1)
 
 #utility function for text cleaning
 def text_cleaner(text):
@@ -41,19 +42,35 @@ def speech(x):
     for i in range(x):
       speechtext.append(speechsent())
 
+def clear():
+    if name == 'nt':
+      system('cls')
+    else:
+      system('clear')
+    
+
 def speechgen():
   while True:
-      newline = '\n\n'
+    newline = '\n\n'
+    try:
       x = int(input("How many lines should the speech be?: "))
       for i in range(x):
         speechtext.append(speechsent())
-      print(f'{newline}{" ".join(speechtext)}{newline}')
-      speechtext.clear
-      y = input("Another speech? (Y/N): ")
-      if y == 'Y'.lower():
-        continue
-      else:
+    except:
+      print('Not a valid answer.  Must be a number')
+      continue
+    print(f'{newline}{" ".join(speechtext)}{newline}')
+    cont = input("Another one? yes/no > ")
+    while cont.lower() not in ("yes","no","y","n"):
+        cont = input("Please enter 'y' or 'n' ")
+    if cont == "no" or cont == "n":
         break
+
+        
+        
+        
+        
+
 speechgen()
 
   
