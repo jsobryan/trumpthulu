@@ -18,7 +18,7 @@ with open('poemspeech.txt','r') as f:
 
 data = text_cleaner(content)
 
-generator = markovify.Text(data,state_size=1)
+generator = markovify.Text(data,state_size=2)
 
 #utility function for text cleaning
 def text_cleaner(text):
@@ -34,8 +34,6 @@ with open('poemspeech.txt','r') as f:
 data = text_cleaner(content)
 speechtext = []
 
-generator = markovify.Text(data,state_size=2)
-
 def speechsent():
     return generator.make_sentence(max_chars=(random.randint(80,140)),tries=1000)
 
@@ -50,6 +48,7 @@ def speechgen():
       for i in range(x):
         speechtext.append(speechsent())
       print(f'{newline}{" ".join(speechtext)}{newline}')
+      speechtext.clear
       y = input("Another speech? (Y/N): ")
       if y == 'Y'.lower():
         continue
