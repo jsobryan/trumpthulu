@@ -43,8 +43,22 @@ def speech(x):
     for i in range(x):
       speechtext.append(speechsent())
 
-speech(20)
-print(' '.join(speechtext))
+def speechgen():
+  while True:
+      newline = '\n\n'
+      x = int(input("How many lines should the speech be?: "))
+      for i in range(x):
+        speechtext.append(speechsent())
+      print(f'{newline}{" ".join(speechtext)}{newline}')
+      y = input("Another speech? (Y/N): ")
+      if y == 'Y'.lower():
+        continue
+      else:
+        break
+speechgen()
+
+  
+
   
 f.close()
 
