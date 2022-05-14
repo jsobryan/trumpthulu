@@ -32,6 +32,7 @@ with open('poemspeech.txt','r') as f:
     content = f.read()
 
 data = text_cleaner(content)
+speechtext = []
 
 generator = markovify.Text(data,state_size=2)
 
@@ -40,9 +41,10 @@ def speechsent():
 
 def speech(x):
     for i in range(x):
-      print(speechsent())
+      speechtext.append(speechsent())
 
-speechsent(20)
+speech(20)
+print(' '.join(speechtext))
   
 f.close()
 
